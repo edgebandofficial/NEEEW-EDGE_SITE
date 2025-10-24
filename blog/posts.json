@@ -1,0 +1,10 @@
+{
+  "posts": [
+    {
+      "title": "Welcome to the EDGE blog",
+      "date": "2025-10-24",
+      "slug": "welcome",
+      "snippet": "What this blog is / what it isn\u2019t."
+    }
+  ]
+}

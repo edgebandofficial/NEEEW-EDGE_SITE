@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EDGE — Blog</title>
+  <link rel="icon" href="/assets/uploads/logo-white.png">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#0a0a0a;color:#f5f5f5;margin:0}
+    header{position:sticky;top:0;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);border-bottom:1px solid #222;padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+    header img{height:46px}
+    .container{max-width:900px;margin:0 auto;padding:48px 16px}
+    h1{font-family:'Bebas Neue',sans-serif;font-size:56px;margin:0 0 18px}
+    .card{border:1px solid rgba(255,255,255,.12);background:rgba(20,20,20,.85);padding:18px;margin-bottom:16px}
+    a{color:#f5f5f5}
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/"><img src="/assets/uploads/logo-white.png" alt="EDGE"></a>
+    <nav style="opacity:.9">
+      <a href="/" style="color:#f5f5f5;margin-right:16px">Home</a>
+      <a href="/blog/" style="color:#f5f5f5">Blog</a>
+    </nav>
+  </header>
+  <main class="container">
+    <h1>Blog</h1>
+    <div id="list"></div>
+  </main>
+<script>
+async function loadJSON(p){const r=await fetch(p);return r.json()}
+loadJSON('/blog/posts.json').then(data=>{
+  const wrap=document.getElementById('list');
+  (data.posts||[]).forEach(p=>{
+    const div=document.createElement('div');div.className='card';
+    div.innerHTML = `<h2 style="font-family:'Bebas Neue',sans-serif;font-size:32px;margin:0 0 4px"><a href="/blog/posts/${p.slug}.html">${p.title}</a></h2>
+    <div style="opacity:.7;font-size:.9rem;margin-bottom:8px">${p.date}</div>
+    <div>${p.snippet||''}</div>`;
+    wrap.appendChild(div);
+  });
+});
+</script>
+</body>
+</html>
